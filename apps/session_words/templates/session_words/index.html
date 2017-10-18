@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang= "en">
+  <head>
+    <meta charset="utf-8">
+    <title>Session Words</title>
+    <meta name="description" content= "Insert description of webpage">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'session_words/css/style.css'%}">
+  </head>
+  <body>
+    <div id="container">
+      <div class="left">
+        <h2>Add a new word</h2>
+        <form action= "session_words/add_word" method="post">
+          {% csrf_token %}
+            <p><input type="text" name="addword"></p>
+            <p>Choose a color</p>
+            <input type="hidden" name="color" value="color:black;">
+            <input type="hidden" name="big" value="">
+            <p><input type="radio" name="color" value="color:red;">Red</p>
+            <p><input type="radio" name="color" value="color:green;">Green</p>
+            <p><input type="radio" name="color" value="color:blue;">Blue</p>
+            <p><input type="radio" name="big" value="font-size:40px;">show in Big fonts!</p>
+          <input type="submit" value="Add to Session">
+        </form>
+      </div>
+      <div class="right">
+        <form ="session_words/clear" method="post">
+          {% csrf_token %}
+          <button type="submit">Clear Session</button>
+        </form>
+        <span style="{{request.session.color}}{{request.session.big}}"><p>{{request.session.addword}}</p></span>
+      </div>
+  </div>
+  </body>
+</html>
