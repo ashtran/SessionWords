@@ -15,8 +15,7 @@ def process(request):
         request.session['big']=request.POST['big']
         request.session['time']=datetime.now().strftime(" - added on %H:%M %p, %B %d, %Y")
         return redirect('/')
-    else:
-        return redirect('/')
+    return redirect('/')
 
 def clear(request):
     print "testing here"
