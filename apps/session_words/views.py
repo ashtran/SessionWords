@@ -10,12 +10,20 @@ def index(request):
 
 def process(request):
     if request.method == "POST":
-        request.session['addword']=request.POST['addword']
-        request.session['color']=request.POST['color']
-        request.session['big']=request.POST['big']
-        request.session['time']=datetime.now().strftime(" - added on %H:%M %p, %B %d, %Y")
+        if 'all_words' not in request.session:
+            request.session['all_words']=[]
+        else:
+            request.session['all_words']=request.session['all_words']
+        context={
+        'addword':request.POST['addword'],
+        'color':request.POST['color'],
+        'big':request.POST['big'],
+        'time':datetime.now().strftime(" - added on %H:%M %p, %B %d, %Y")
+        }
+        request.session['all_words'].append(context)
         return redirect('/')
-    return redirect('/')
+    else:
+        return redirect('/')
 
 def clear(request):
     print "testing here"
