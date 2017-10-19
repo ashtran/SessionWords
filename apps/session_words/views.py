@@ -13,6 +13,7 @@ def process(request):
         request.session['addword']=request.POST['addword']
         request.session['color']=request.POST['color']
         request.session['big']=request.POST['big']
+        request.session['time']=datetime.now().strftime(" - added on %H:%M %p, %B %d, %Y")
         return redirect('/')
     else:
         return redirect('/')

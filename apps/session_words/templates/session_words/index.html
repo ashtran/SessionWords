@@ -29,7 +29,7 @@
           {% csrf_token %}
           <button type="submit">Clear Session</button>
         </form>
-        <span style="{{request.session.color}}{{request.session.big}}"><p>{{request.session.addword}}</p></span>
+        <p><span style="{{request.session.color}}{{request.session.big}}">{{request.session.addword}}</span>{{request.session.time}}</p>
       </div>
   </div>
   </body>
